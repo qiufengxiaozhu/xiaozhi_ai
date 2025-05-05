@@ -91,10 +91,45 @@
 			<artifactId>velocity-engine-core</artifactId>
 			<version>2.3</version>
 		</dependency>
-		<!--监控组件-->
+		<!--系统监控组件-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!--解析pdf文档的文档解析器-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+		</dependency>
+		<!--够解析微软办公软件的文件格式（例如 DOC、DOCX、PPT、PPTX、XLS、XLSX 等）-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-document-parser-apache-poi</artifactId>
+		</dependency>
+		<!--自动检测并解析几乎所有现有的文件格式-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-document-parser-apache-tika</artifactId>
+		</dependency>
+		<!--简单的rag实现，使用基于内存的向量存储-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-easy-rag</artifactId>
+		</dependency>
+		<!--向量存储提供商：Pinecone-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-pinecone</artifactId>
+		</dependency>
+		<!--整合流式输出-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<!--整合流式输出-->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-reactor</artifactId>
 		</dependency>
 	</dependencies>
 

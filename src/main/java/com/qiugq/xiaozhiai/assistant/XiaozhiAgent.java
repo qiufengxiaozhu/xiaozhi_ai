@@ -4,6 +4,7 @@ import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.spring.AiService;
+import reactor.core.publisher.Flux;
 
 import static dev.langchain4j.service.spring.AiServiceWiringMode.EXPLICIT;
 
@@ -12,9 +13,12 @@ import static dev.langchain4j.service.spring.AiServiceWiringMode.EXPLICIT;
  */
 @AiService(
 		wiringMode = EXPLICIT,
-		chatModel = "qwenChatModel",
+		// chatModel = "qwenChatModel", 替换为下面的流式输出
+		streamingChatModel = "qwenStreamingChatModel",
 		chatMemoryProvider = "chatMemoryProviderXiaozhi",
-		tools = { "calculatorTools", "appointmentTools"})
+		tools = { "calculatorTools", "appointmentTools"},
+		contentRetriever = "contentRetrieverXiaozhiPincone"
+)
 public interface XiaozhiAgent {
 
 	/**
@@ -25,5 +29,6 @@ public interface XiaozhiAgent {
 	 * @return 大语言模型的回答
 	 */
 	@SystemMessage(fromResource = "xiaozhi-prompt-template.txt")
-	String chat(@MemoryId Long memoryId, @UserMessage String userMessage);
+	Flux<String> chat(@MemoryId Long memoryId, @UserMessage String userMessage);
+	// String chat(@MemoryId Long memoryId, @UserMessage String userMessage); 使用上面的流式输出，改返回值
 }
