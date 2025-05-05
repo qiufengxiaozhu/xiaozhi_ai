@@ -42,7 +42,7 @@ public class MongoChatMemoryStore implements ChatMemoryStore {
 	}
 
 	/**
-	 * 获取或创建一个聊天记录
+	 * 修改或创建一个聊天记录
 	 * @param memoryId The ID of the chat memory.
 	 * @param messages List of messages for the specified chat memory, that represent the current state of the {@link ChatMemory}.
 	 *                 Can be serialized to JSON using {@link ChatMessageSerializer}.
