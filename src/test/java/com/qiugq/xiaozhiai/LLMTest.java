@@ -75,8 +75,6 @@ class LLMTest {
 		System.out.println(answer);
 	}
 
-	// @Autowired
-	// private wanxImageModel wanxImageModel;
 	/**
 	 * 通义万相文生图
 	 */

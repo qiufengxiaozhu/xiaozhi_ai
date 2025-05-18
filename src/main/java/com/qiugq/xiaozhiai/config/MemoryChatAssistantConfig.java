@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MemoryChatAssistantConfig {
 
-	@Bean(name = "chatMemory")
+	@Bean
 	ChatMemory chatMemory() {
 		//设置聊天记忆记录的message数量
 		return MessageWindowChatMemory.withMaxMessages(10);
