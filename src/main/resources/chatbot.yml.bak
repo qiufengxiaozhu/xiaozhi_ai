@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: xiaozhi-ai
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/chat_memory_db
+  datasource:
+    url: jdbc:mysql://localhost:3306/guiguxiaozhi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+
+# 1、gpt-4o-mini，默认的langchain4j测试模型
+#langchain4j:
+#  open-ai:
+#    chat-model:
+#      baseUrl: http://langchain4j.dev/demo/openai/v1
+#      api-key: demo
+#      model-name: gpt-4o-mini
+
+# 2、deepseek模型
+#langchain4j:
+#  open-ai:
+#    chat-model:
+#      baseUrl: https://api.deepseek.com/
+#      api-key: ${DEEP_SEEK_API_KEY}
+#      model-name: deepseek-reasoner
+#      log-requests: true
+#      log-responses: true
+
+# 3、ollama本地模型
+langchain4j:
+  ollama:
+    chat-model:
+      base-url: http://localhost:11434
+      model-name: deepseek-r1:8b
+      temperature: 0.8
+      timeout: PT60S
+      log-requests: true
+      log-responses: true
+
+# 4、阿里百炼平台，目前暂无log配置
+  community:
+    dashscope:
+      chat-model:
+        api-key: ${DASH_SCOPE_API_KEY}
+        model-name: qwen-max
+      streaming-chat-model:
+        api-key: ${DASH_SCOPE_API_KEY}
+        model-name: qwen-plus
+      embedding-model:
+        api-key: ${DASH_SCOPE_API_KEY}
+        model-name: text-embedding-v3
+
+# 5、集成百炼-deepseek，与上面的官网版deepseek相比，只是value更换了，比如url\key\model-name，测试方法还是用一个
+  open-ai:
+    chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${DASH_SCOPE_API_KEY}
+      model-name: deepseek-v3
+      temperature: 0.9
+
+# 开启 SQL 日志打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 启用日志debug级别
+logging:
+  level:
+    root: info
+
+# 暴露所有Actuator端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
